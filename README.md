@@ -3,9 +3,8 @@
 
 ## Équipe
 
-Sujet : [inscrivez quel service est développé par l'équipe]
-Noms :
-[Remplacez ce texte par vos noms ici]
+Sujet : Flight
+Noms : Laurent Brochu, Karl Mainville, Louis Garceau, Maxime Aubin, Maxime Lefebvre et Jean-Philippe Belval
 
 ## Description
 
