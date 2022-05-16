@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CarDTO\CarDTO.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CommonDataDTO\CommonDataDTO.csproj" />
     <ProjectReference Include="..\CruiseDTO\CruiseDTO.csproj" />
     <ProjectReference Include="..\ExcursionDTO\ExcursionDTO.csproj" />
