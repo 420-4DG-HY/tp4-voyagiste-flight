@@ -52,7 +52,16 @@ namespace FlightDAL
         // Création des compagnies aériennes
         internal static readonly AirLine[] airLines =
         {
-
+            new AirLine(new Guid("02142456-4c0e-4cf5-8531-166da499d46d"), "Delta Air Lines"),
+            new AirLine(new Guid("5620dede-05f5-43d0-a74b-11764da7c9b0"), "Americain Airlines"),
+            new AirLine(new Guid("91891b62-7781-40c5-9e2b-4309e9de4718"), "Southwest"),
+            new AirLine(new Guid("6c6c39cd-adaa-44c6-91a6-a2ed1544a75b"), "United"),
+            new AirLine(new Guid("b12a5e7e-4b92-4b5c-8927-3fb052516e5d"), "Alaska Airlines"),
+            new AirLine(new Guid("b13ed065-9b00-4980-97e6-f76d19821d96"), "JetBlue"),
+            new AirLine(new Guid("6b290027-c49e-44de-a485-6336be243776"), "Lufthansa"),
+            new AirLine(new Guid("1c446278-d275-4ba3-ba7f-4722590f886e"), "British Airways"),
+            new AirLine(new Guid("46c3679c-9e3c-417a-a69e-266b2aeccf70"), "Air Canada"),
+            new AirLine(new Guid("d54e88b1-d894-4b66-a9ae-8ac9e213f4a2"), "Virgin America")
         };
 
         // Création des vols
