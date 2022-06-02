@@ -36,7 +36,7 @@ namespace FlightAPI.Controllers
             return _bll.ConfirmBooking(booking);
         }
 
-        [HttpGet("GetAirLine")]
+        [HttpGet("GetAirLine/{AireLineId}")]
         public AirLine? GetAirLine(Guid AireLineId)
         {
             return _bll.GetAirLine(AireLineId);
@@ -48,7 +48,7 @@ namespace FlightAPI.Controllers
             return _bll.GetAirLines();
         }
 
-        [HttpGet("GetAirport")]
+        [HttpGet("GetAirport/{IATACode}")]
         public Airport? GetAirport(string IATACode)
         {
             return _bll.GetAirport(IATACode);
@@ -72,7 +72,7 @@ namespace FlightAPI.Controllers
             return _bll.GetBookingConfirmation(booking);
         }
 
-        [HttpGet("GetFlight")]
+        [HttpGet("GetFlight/{FlightId}")]
         public Flight? GetFlight(Guid FlightId)
         {
             return _bll.GetFlight(FlightId);
