@@ -67,12 +67,18 @@ namespace FlightDAL
         // Création des vols
         internal static readonly Flight[] flights =
         {
-
+            new Flight(new Guid("835c9c07-629b-4f7f-9189-93160f43075a"), airLines[3], "AA8025", airports[1], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(5)),
+            new Flight(new Guid("18fb87a9-8a3f-4077-9373-2af7348c2ced"), airLines[1], "BA9725", airports[3], DateTime.Now + TimeSpan.FromHours(5), airports[3], DateTime.Now + TimeSpan.FromHours(14)),
+            new Flight(new Guid("1c6d95a9-7d62-417d-ac23-56c34951b027"), airLines[2], "DA7025", airports[4], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(6)),
+            new Flight(new Guid("b79ed0cc-861c-479e-98e2-aa4eb60ba117"), airLines[4], "AW8025", airports[7], DateTime.Now + TimeSpan.FromHours(2), airports[3], DateTime.Now + TimeSpan.FromHours(8)),
+            new Flight(new Guid("99e15c41-42c9-4094-a005-1c2b661c5b74"), airLines[5], "AQ0395", airports[1], DateTime.Now + TimeSpan.FromHours(1), airports[3], DateTime.Now + TimeSpan.FromHours(10)),
+            new Flight(new Guid("57b498ce-7362-4300-99c9-405bed2ae392"), airLines[7], "BA8125", airports[3], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(2))
         };
 
         #endregion
 
         #region données dynamiques : Celles vont changer avec les réservations
+        internal List<FlightAvailability> flightAvailabilities;
         internal List<FlightBooking> flightBookings;
         internal List<BookingConfirmation> bookingConfirmations;
         internal List<BookingCancellation> bookingCancellations;
