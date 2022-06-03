@@ -22,12 +22,14 @@ namespace FlightBLL
         public FlightBooking[] GetFlightBooking(Person passenger);
         public FlightBooking[] GetFlightBooking(Flight flight);
 
-        public FlightBooking Book(Flight flight, Person passenger);
+        public FlightBooking Book(Guid FlightId, Person passenger);
         public BookingConfirmation ConfirmBooking(FlightBooking booking);
         public BookingConfirmation? GetBookingConfirmation(FlightBooking booking);
         public BookingCancellation CancelBooking(FlightBooking booking);
         public BookingCancellation? GetBookingCancellation(FlightBooking booking);
+        public void CleanupAvailabilities(Flight flight);
     }
+
     public class FlightBusinessLogic : IFlightBusinessLogic
     {
         readonly ILogger<FlightBusinessLogic> _logger;
@@ -39,21 +41,41 @@ namespace FlightBLL
             _logger = Logger;
         }
 
-        public FlightBooking Book(Flight flight, Person passenger)
+        public FlightBooking Book(Guid FlightId, Person passenger)
         {
+            Flight? flight = _dal.GetFlight(FlightId);
+            if(flight == null)
+            {
+                string message = "Invalid Flight GUID: " + FlightId;
+                _logger.LogError(message);
+                throw new Exception(message);
+            }
+
+            //_dal.RemoveFlightAvailability(flight);
             return _dal.Book(flight, passenger);
         }
 
         public BookingCancellation CancelBooking(FlightBooking booking)
         {
+            //_dal.AddFlightAvailability(booking.Flight, booking.BookedWhen);
+            CleanupAvailabilities(booking.Flight);
+
             return _dal.CancelBooking(booking);
         }
 
-        public BookingConfirmation ConfirmBooking(FlightBooking booking)
+
+        public void CleanupAvailabilities(Flight flight)
         {
-            return _dal.ConfirmBooking(booking);
+            // ici on devrait éventuellement fusionner les disponibilités adjacentes
+            // Une forme de défragmentation du calendrier après une annulation...
+
+            //FlightAvailability[]? availabilities = _dal.GetFlightAvailabilities(flight);
+
+            // On identifie les disponibilités adjacentes 
+            // On les supprime et crée une nouvelle disponibilité qui les remplace
         }
 
+        #region délégation du DAL
         public AirLine? GetAirLine(Guid AireLineId)
         {
             return _dal.GetAirLine(AireLineId);
@@ -108,5 +130,10 @@ namespace FlightBLL
         {
             return _dal.GetFlights(airport);
         }
+        public BookingConfirmation ConfirmBooking(FlightBooking booking)
+        {
+            return _dal.ConfirmBooking(booking);
+        }
+        #endregion
     }
 }
