@@ -86,6 +86,7 @@ namespace FlightDAL
 
         private FakeData()
         {
+            flightAvailabilities = new List<FlightAvailability>();
             flightBookings = new List<FlightBooking>();
             bookingConfirmations = new List<BookingConfirmation>();
             bookingCancellations = new List<BookingCancellation>();
