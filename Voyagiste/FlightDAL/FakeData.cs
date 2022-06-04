@@ -75,6 +75,17 @@ namespace FlightDAL
             new Flight(new Guid("57b498ce-7362-4300-99c9-405bed2ae392"), airLines[7], "BA8125", airports[3], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(2))
         };
 
+        // Création des sièges
+        internal static readonly Seat[] seats =
+        {
+            new Seat(new Guid("2dc17af5-8abf-466e-89b8-bf7d928c1340"), flights[3], "DG5312"),
+            new Seat(new Guid("56b0cfa8-db22-4b78-8969-4d0cfa168375"), flights[3], "BF3134"),
+            new Seat(new Guid("e3cf7374-e011-4596-a772-c8996f723ee5"), flights[3], "AD3113"),
+            new Seat(new Guid("eaf02cdb-5513-4372-8079-e7b95294001d"), flights[3], "GF8429"),
+            new Seat(new Guid("2d712cd1-3490-4d97-adb9-7507affef25e"), flights[3], "AW4163"),
+            new Seat(new Guid("c56a219a-5027-4d9e-bd3b-fd63df1bf71e"), flights[3], "BR3148"),
+        };
+
         #endregion
 
         #region données dynamiques : Celles vont changer avec les réservations

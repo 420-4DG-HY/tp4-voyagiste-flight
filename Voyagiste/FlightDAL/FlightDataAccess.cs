@@ -30,6 +30,8 @@ namespace FlightDAL
         public BookingConfirmation? GetBookingConfirmation(FlightBooking booking);
         public BookingCancellation CancelBooking(FlightBooking booking);
         public BookingCancellation? GetBookingCancellation(FlightBooking booking);
+        public Seat? GetSeat(string seatCode);
+        public Seat[] GetSeats(Flight flight);
     }
 
     public class FlightDataAccess : IFlightDataAccess
@@ -115,6 +117,14 @@ namespace FlightDAL
         public BookingCancellation? GetBookingCancellation(FlightBooking booking)
         {
             return FakeData.GetInstance().bookingCancellations.Where(bc => bc.Booking == booking).FirstOrDefault();
+        }
+        public Seat[] GetSeats(Flight flight)
+        {
+            return FakeData.seats.Where(c => c.Flight == flight).ToArray();
+        }
+        public Seat? GetSeat(string seatCode)
+        {
+            return FakeData.seats.Where(c => c.SeatCode == seatCode).Single();
         }
     }
 }

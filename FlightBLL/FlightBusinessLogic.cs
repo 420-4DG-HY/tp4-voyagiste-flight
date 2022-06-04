@@ -44,7 +44,7 @@ namespace FlightBLL
         public FlightBooking Book(Guid FlightId, string seatCode, Person passenger)
         {
             Flight? flight = _dal.GetFlight(FlightId);
-            //Seat seat = _dal.GetSeat(seatCode);
+            Seat? seat = _dal.GetSeat(seatCode);
             if(flight == null)
             {
                 string message = "Invalid Flight GUID: " + FlightId;
@@ -53,7 +53,7 @@ namespace FlightBLL
             }
             if(seat == null)
             {
-                string message = "Invalid Flight GUID: " + FlightId;
+                string message = "Invalid Seat Code: " + seatCode;
                 _logger.LogError(message);
                 throw new Exception(message);
             }
