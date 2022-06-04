@@ -25,7 +25,7 @@ namespace FlightDAL
         public FlightBooking[] GetFlightBooking(Person passenger);
         public FlightBooking[] GetFlightBooking(Flight flight);
 
-        public FlightBooking Book(Flight flight, Person passenger);
+        public FlightBooking Book(Flight flight, Seat seat, Person passenger);
         public BookingConfirmation ConfirmBooking(FlightBooking booking);
         public BookingConfirmation? GetBookingConfirmation(FlightBooking booking);
         public BookingCancellation CancelBooking(FlightBooking booking);
@@ -82,9 +82,9 @@ namespace FlightDAL
             return FakeData.GetInstance().flightBookings.Where(cb => cb.Flight == flight).ToArray();
         }
 
-        public FlightBooking Book(Flight flight, Person passenger)
+        public FlightBooking Book(Flight flight, Seat seat, Person passenger)
         {
-            return new FlightBooking(new Guid(), flight, passenger, new DateTime());
+            return new FlightBooking(new Guid(), flight, seat, passenger, new DateTime());
         }
         public BookingConfirmation ConfirmBooking(FlightBooking booking)
         {

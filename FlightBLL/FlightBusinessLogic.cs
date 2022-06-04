@@ -22,7 +22,7 @@ namespace FlightBLL
         public FlightBooking[] GetFlightBooking(Person passenger);
         public FlightBooking[] GetFlightBooking(Flight flight);
 
-        public FlightBooking Book(Guid FlightId, Person passenger);
+        public FlightBooking Book(Guid FlightId, string codeSeat, Person passenger);
         public BookingConfirmation ConfirmBooking(FlightBooking booking);
         public BookingConfirmation? GetBookingConfirmation(FlightBooking booking);
         public BookingCancellation CancelBooking(FlightBooking booking);
@@ -41,10 +41,17 @@ namespace FlightBLL
             _logger = Logger;
         }
 
-        public FlightBooking Book(Guid FlightId, Person passenger)
+        public FlightBooking Book(Guid FlightId, string seatCode, Person passenger)
         {
             Flight? flight = _dal.GetFlight(FlightId);
+            //Seat seat = _dal.GetSeat(seatCode);
             if(flight == null)
+            {
+                string message = "Invalid Flight GUID: " + FlightId;
+                _logger.LogError(message);
+                throw new Exception(message);
+            }
+            if(seat == null)
             {
                 string message = "Invalid Flight GUID: " + FlightId;
                 _logger.LogError(message);
@@ -52,7 +59,7 @@ namespace FlightBLL
             }
 
             //_dal.RemoveFlightAvailability(flight);
-            return _dal.Book(flight, passenger);
+            return _dal.Book(flight, seat, passenger);
         }
 
         public BookingCancellation CancelBooking(FlightBooking booking)
