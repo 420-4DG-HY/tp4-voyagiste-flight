@@ -51,7 +51,8 @@ namespace FlightBLL
                 _logger.LogError(message);
                 throw new Exception(message);
             }
-            if(seat == null)
+            //S'assurer d'avoir un siège dans un avion et dans le bon avion
+            if(seat == null || seat.Flight.FlightId != flight.FlightId)
             {
                 string message = "Invalid Seat Code: " + seatCode;
                 _logger.LogError(message);
