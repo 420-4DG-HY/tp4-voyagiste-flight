@@ -78,28 +78,28 @@ namespace FlightAPI.Controllers
             return _bll.GetFlight(FlightId);
         }
 
-        [HttpGet("GetFlightBooking")]
+        [HttpGet("GetFlightBookingPassenger")]
         public FlightBooking[] GetFlightBooking(Person passenger)
         {
             return _bll.GetFlightBooking(passenger);
         }
 
-        //[HttpGet("GetFlightBooking")]
-        //public FlightBooking[] GetFlightBooking(Flight flight)
-        //{
-        //    return _bll.GetFlightBooking(flight);
-        //}
+        [HttpGet("GetFlightBookingFlight")]
+        public FlightBooking[] GetFlightBooking(Flight flight)
+        {
+            return _bll.GetFlightBooking(flight);
+        }
 
-        [HttpGet("GetFlights")]
+        [HttpGet("GetFlightsAirline")]
         public Flight[] GetFlights(AirLine airline)
         {
             return _bll.GetFlights(airline);
         }
 
-        //[HttpGet("GetFlights")]
-        //public Flight[] GetFlights(Airport airport)
-        //{
-        //    return _bll.GetFlights(airport);
-        //}
+        [HttpGet("GetFlightsAirport")]
+        public Flight[] GetFlights(Airport airport)
+        {
+            return _bll.GetFlights(airport);
+        }
     }
 }
