@@ -64,7 +64,7 @@ namespace FlightBLL
 
         public BookingCancellation CancelBooking(FlightBooking booking)
         {
-            // 
+            // Rendre le booking available
             //_dal.AddFlightAvailability(booking.Flight, booking.BookedWhen);
             CleanupAvailabilities(booking.Flight);
 

@@ -18,18 +18,21 @@ namespace FlightAPI.Controllers
             _logger = Logger;
         }
 
+        // Tested, working
         [HttpPost("Book")]
         public FlightBooking Book(Guid flightId, string seatCode, Person passenger)
         {
             return _bll.Book(flightId, seatCode, passenger);
         }
 
+        // Tested, working
         [HttpPost("CancelBooking")]
         public BookingCancellation CancelBooking(FlightBooking booking)
         {
             return _bll.CancelBooking(booking);
         }
 
+        // Tested, working
         [HttpPost("ConfirmBooking")]
         public BookingConfirmation ConfirmBooking(FlightBooking booking)
         {
