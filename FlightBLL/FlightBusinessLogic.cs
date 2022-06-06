@@ -17,8 +17,8 @@ namespace FlightBLL
         public AirLine[] GetAirLines();
         public AirLine? GetAirLine(Guid AireLineId);
         public Flight? GetFlight(Guid FlightId);
-        public Flight[] GetFlights(AirLine airline);
-        public Flight[] GetFlights(Airport airport);
+        public Flight[] GetFlightsAirline(Guid AirlineId);
+        public Flight[] GetFlightsAirport(Guid AirportId);
         public FlightBooking[] GetFlightBooking(Person passenger);
         public FlightBooking[] GetFlightBooking(Flight flight);
 
@@ -65,6 +65,7 @@ namespace FlightBLL
 
         public BookingCancellation CancelBooking(FlightBooking booking)
         {
+            // 
             //_dal.AddFlightAvailability(booking.Flight, booking.BookedWhen);
             CleanupAvailabilities(booking.Flight);
 
@@ -129,14 +130,14 @@ namespace FlightBLL
             return _dal.GetFlightBooking(flight);
         }
 
-        public Flight[] GetFlights(AirLine airline)
+        public Flight[] GetFlightsAirline(Guid AirlineId)
         {
-            return _dal.GetFlights(airline);
+            return _dal.GetFlightsAirline(AirlineId);
         }
 
-        public Flight[] GetFlights(Airport airport)
+        public Flight[] GetFlightsAirport(Guid AirportId)
         {
-            return _dal.GetFlights(airport);
+            return _dal.GetFlightsAirport(AirportId);
         }
         public BookingConfirmation ConfirmBooking(FlightBooking booking)
         {

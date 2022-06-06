@@ -20,8 +20,8 @@ namespace FlightDAL
         public AirLine[] GetAirLines();
         public AirLine? GetAirLine(Guid AireLineId);
         public Flight? GetFlight(Guid FlightId);
-        public Flight[] GetFlights(AirLine airline);
-        public Flight[] GetFlights(Airport airport);
+        public Flight[] GetFlightsAirline(Guid AirlineId);
+        public Flight[] GetFlightsAirport(Guid AirportId);
         public FlightBooking[] GetFlightBooking(Person passenger);
         public FlightBooking[] GetFlightBooking(Flight flight);
 
@@ -60,20 +60,20 @@ namespace FlightDAL
         }
         public AirLine? GetAirLine(Guid AireLineId)
         {
-            return FakeData.airLines.Where(c => c.AireLineId == AireLineId).SingleOrDefault();
+            return FakeData.airLines.Where(c => c.AirelineId == AireLineId).SingleOrDefault();
         }
 
         public Flight? GetFlight(Guid FlightId)
         {
             return FakeData.flights.Where(c => c.FlightId == FlightId).Single();
         }
-        public Flight[] GetFlights(AirLine airline)
+        public Flight[] GetFlightsAirline(Guid AirlineId)
         {
-            return FakeData.flights.Where(c => c.AirLine == airline).ToArray();
+            return FakeData.flights.Where(c => c.AirLine.AirelineId == AirlineId).ToArray();
         }
-        public Flight[] GetFlights(Airport airport)
+        public Flight[] GetFlightsAirport(Guid AirportId)
         {
-            return FakeData.flights.Where(c => c.ArrivalAiport == airport).ToArray();
+            return FakeData.flights.Where(c => c.ArrivalAirport.AirportId == AirportId).ToArray();
         }
         public FlightBooking[] GetFlightBooking(Person passenger)
         {

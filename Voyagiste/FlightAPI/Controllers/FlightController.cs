@@ -19,7 +19,7 @@ namespace FlightAPI.Controllers
         }
 
         [HttpPost("Book")]
-        public FlightBooking Book(Guid flightId,string seatCode, Person passenger)
+        public FlightBooking Book(Guid flightId, string seatCode, Person passenger)
         {
             return _bll.Book(flightId, seatCode, passenger);
         }
@@ -42,6 +42,7 @@ namespace FlightAPI.Controllers
             return _bll.GetAirLine(AireLineId);
         }
 
+        // Tested, working
         [HttpGet("GetAirLines")]
         public AirLine[] GetAirLines()
         {
@@ -54,6 +55,7 @@ namespace FlightAPI.Controllers
             return _bll.GetAirport(IATACode);
         }
 
+        // Tested, working
         [HttpGet("GetAirports")]
         public Airport[] GetAirports()
         {
@@ -90,16 +92,19 @@ namespace FlightAPI.Controllers
             return _bll.GetFlightBooking(flight);
         }
 
-        [HttpGet("GetFlightsAirline")]
-        public Flight[] GetFlights(AirLine airline)
+        // Tested, working
+        [HttpGet("GetFlightsAirline/{AirlineId}")]
+        public Flight[] GetFlightsAirline(Guid AirlineId)
         {
-            return _bll.GetFlights(airline);
+            return _bll.GetFlightsAirline(AirlineId);
         }
 
-        [HttpGet("GetFlightsAirport")]
-        public Flight[] GetFlights(Airport airport)
+        // Tested, working
+        [HttpGet("GetFlightsAirport/{AirportId}")]
+        public Flight[] GetFlightsAirport(Guid AirportId)
         {
-            return _bll.GetFlights(airport);
+            var flight = _bll.GetFlightsAirport(AirportId);
+            return flight;
         }
     }
 }

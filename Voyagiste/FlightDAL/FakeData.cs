@@ -34,19 +34,19 @@ namespace FlightDAL
         // Création des aéroports.
         internal static readonly Airport[] airports =
         {
-            new Airport("ATL", "Hartsfield-Jackson International Airport", addresses[0]),
-            new Airport("DFW", "Dallas/Fort Worth International Airport", addresses[1]),
-            new Airport("DEN", "Denver International Airport", addresses[2]),
-            new Airport("ORD", "O'Hare International Airport", addresses[3]),
-            new Airport("LAX", "Los Angeles International Airport", addresses[4]),
-            new Airport("YUL", "Montréal–Trudeau International Airport", addresses[5]),
-            new Airport("YQB", "Québec/Jean Lesage International Airport", addresses[6]),
-            new Airport("YOW", "Ottawa Macdonald–Cartier International Airport", addresses[7]),
-            new Airport("YYZ", "Toronto Pearson International Airport", addresses[8]),
-            new Airport("YYC", "Calgary International Airport", addresses[9]),
-            new Airport("YEG", "Edmonton International Airport", addresses[10]),
-            new Airport("YWG", "Winnipeg International Airport", addresses[11]),
-            new Airport("YVR", "Vancouver International Airport", addresses[12]),
+            new Airport(new Guid("cf20e7b8-ae81-4c55-9bcc-1bc8e1a95031"), "ATL", "Hartsfield-Jackson International Airport", addresses[0]),
+            new Airport(new Guid("6d3749a8-a5d0-4a7d-baab-a77bad1491e2"), "DFW", "Dallas/Fort Worth International Airport", addresses[1]),
+            new Airport(new Guid("e1bf89ed-d481-4e08-be8f-71490254ea36"), "DEN", "Denver International Airport", addresses[2]),
+            new Airport(new Guid("b191e55d-6b03-4df1-8bd8-74fab456bba9"), "ORD", "O'Hare International Airport", addresses[3]),
+            new Airport(new Guid("1583160e-e74d-4657-9bbd-365e1c9a3eaa"), "LAX", "Los Angeles International Airport", addresses[4]),
+            new Airport(new Guid("7bdd0d2b-d0a4-44f4-acc4-3c16474ffe85"), "YUL", "Montréal–Trudeau International Airport", addresses[5]),
+            new Airport(new Guid("8981bb76-4671-4cf8-b111-19d29b31ccfa"), "YQB", "Québec/Jean Lesage International Airport", addresses[6]),
+            new Airport(new Guid("e48ba71c-01ae-4d50-bd51-8862e2d79745"), "YOW", "Ottawa Macdonald–Cartier International Airport", addresses[7]),
+            new Airport(new Guid("dc396e71-9760-4327-ae23-19c98a98927f"), "YYZ", "Toronto Pearson International Airport", addresses[8]),
+            new Airport(new Guid("6f03c93f-c5f7-4293-9668-4445d450ad39"), "YYC", "Calgary International Airport", addresses[9]),
+            new Airport(new Guid("725dbe22-11d6-4174-a48a-f8990bf540b2"), "YEG", "Edmonton International Airport", addresses[10]),
+            new Airport(new Guid("8ef13768-373e-4092-b44e-8b6f138edcb4"), "YWG", "Winnipeg International Airport", addresses[11]),
+            new Airport(new Guid("0cdff5ab-c180-4803-9142-84a185417aef"), "YVR", "Vancouver International Airport", addresses[12]),
         };
 
         // Création des compagnies aériennes
@@ -67,12 +67,12 @@ namespace FlightDAL
         // Création des vols
         internal static readonly Flight[] flights =
         {
-            new Flight(new Guid("835c9c07-629b-4f7f-9189-93160f43075a"), airLines[3], "AA8025", airports[1], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(5)),
-            new Flight(new Guid("18fb87a9-8a3f-4077-9373-2af7348c2ced"), airLines[1], "BA9725", airports[3], DateTime.Now + TimeSpan.FromHours(5), airports[3], DateTime.Now + TimeSpan.FromHours(14)),
-            new Flight(new Guid("1c6d95a9-7d62-417d-ac23-56c34951b027"), airLines[2], "DA7025", airports[4], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(6)),
-            new Flight(new Guid("b79ed0cc-861c-479e-98e2-aa4eb60ba117"), airLines[4], "AW8025", airports[7], DateTime.Now + TimeSpan.FromHours(2), airports[3], DateTime.Now + TimeSpan.FromHours(8)),
-            new Flight(new Guid("99e15c41-42c9-4094-a005-1c2b661c5b74"), airLines[5], "AQ0395", airports[1], DateTime.Now + TimeSpan.FromHours(1), airports[3], DateTime.Now + TimeSpan.FromHours(10)),
-            new Flight(new Guid("57b498ce-7362-4300-99c9-405bed2ae392"), airLines[7], "BA8125", airports[3], DateTime.Now, airports[3], DateTime.Now + TimeSpan.FromHours(2))
+            new Flight(new Guid("835c9c07-629b-4f7f-9189-93160f43075a"), airLines[3], "AA8025", airports[1], DateTime.Now, airports[1], DateTime.Now + TimeSpan.FromHours(5)),
+            new Flight(new Guid("18fb87a9-8a3f-4077-9373-2af7348c2ced"), airLines[1], "BA9725", airports[3], DateTime.Now + TimeSpan.FromHours(5), airports[5], DateTime.Now + TimeSpan.FromHours(14)),
+            new Flight(new Guid("1c6d95a9-7d62-417d-ac23-56c34951b027"), airLines[2], "DA7025", airports[4], DateTime.Now, airports[8], DateTime.Now + TimeSpan.FromHours(6)),
+            new Flight(new Guid("b79ed0cc-861c-479e-98e2-aa4eb60ba117"), airLines[4], "AW8025", airports[7], DateTime.Now + TimeSpan.FromHours(2), airports[2], DateTime.Now + TimeSpan.FromHours(8)),
+            new Flight(new Guid("99e15c41-42c9-4094-a005-1c2b661c5b74"), airLines[5], "AQ0395", airports[1], DateTime.Now + TimeSpan.FromHours(1), airports[2], DateTime.Now + TimeSpan.FromHours(10)),
+            new Flight(new Guid("57b498ce-7362-4300-99c9-405bed2ae392"), airLines[7], "BA8125", airports[3], DateTime.Now, airports[2], DateTime.Now + TimeSpan.FromHours(2))
         };
 
         // Création des sièges
