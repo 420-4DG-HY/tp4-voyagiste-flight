@@ -22,14 +22,14 @@ namespace FlightDAL
         public Flight? GetFlight(Guid FlightId);
         public Flight[] GetFlightsAirline(Guid AirlineId);
         public Flight[] GetFlightsAirport(Guid AirportId);
-        public FlightBooking[] GetFlightBooking(Person passenger);
-        public FlightBooking[] GetFlightBooking(Flight flight);
+        public FlightBooking[] GetFlightBookingPassenger(Guid PassengerId);
+        public FlightBooking[] GetFlightBookingFlight(Guid FlightId);
 
         public FlightBooking Book(Flight flight, Seat seat, Person passenger);
         public BookingConfirmation ConfirmBooking(FlightBooking booking);
-        public BookingConfirmation? GetBookingConfirmation(FlightBooking booking);
+        public BookingConfirmation? GetBookingConfirmation(Guid BookingId);
         public BookingCancellation CancelBooking(FlightBooking booking);
-        public BookingCancellation? GetBookingCancellation(FlightBooking booking);
+        public BookingCancellation? GetBookingCancellation(Guid BookingId);
         public Seat? GetSeat(string seatCode);
         public Seat[] GetSeats(Flight flight);
     }
@@ -75,22 +75,26 @@ namespace FlightDAL
         {
             return FakeData.flights.Where(c => c.ArrivalAirport.AirportId == AirportId).ToArray();
         }
-        public FlightBooking[] GetFlightBooking(Person passenger)
+        public FlightBooking[] GetFlightBookingPassenger(Guid PassengerId)
         {
-            return FakeData.GetInstance().flightBookings.Where(cb => cb.Passenger == passenger).ToArray();
+            return FakeData.GetInstance().flightBookings.Where(cb => cb.Passenger.PersonId == PassengerId).ToArray();
         }
-        public FlightBooking[] GetFlightBooking(Flight flight)
+        public FlightBooking[] GetFlightBookingFlight(Guid FlightId)
         {
-            return FakeData.GetInstance().flightBookings.Where(cb => cb.Flight == flight).ToArray();
+            return FakeData.GetInstance().flightBookings.Where(cb => cb.Flight.FlightId == FlightId).ToArray();
         }
 
         public FlightBooking Book(Flight flight, Seat seat, Person passenger)
         {
+            // Ajouter le booking
+            FakeData.GetInstance().flightBookings.Add(new FlightBooking(new Guid(), flight, seat, passenger, new DateTime()));
+
+            // Retourner le booking
             return new FlightBooking(new Guid(), flight, seat, passenger, new DateTime());
         }
         public BookingConfirmation ConfirmBooking(FlightBooking booking)
         {
-            BookingCancellation? bBancel = GetBookingCancellation(booking);
+            BookingCancellation? bBancel = GetBookingCancellation(booking.BookingId);
             if (bBancel != null)
             {
                 string message = "Cannot confirm booking : \n" + booking + " \nBecause it has been cancelled by : \n" + bBancel;
@@ -104,19 +108,20 @@ namespace FlightDAL
                 return bc;
             }
         }
-        public BookingConfirmation? GetBookingConfirmation(FlightBooking booking)
+        public BookingConfirmation? GetBookingConfirmation(Guid BookingId)
         {
-            return FakeData.GetInstance().bookingConfirmations.Where(bc => bc.Booking == booking).FirstOrDefault();
+            return FakeData.GetInstance().bookingConfirmations.Where(bc => bc.Booking.BookingId == BookingId).FirstOrDefault();
         }
         public BookingCancellation CancelBooking(FlightBooking booking)
         {
             BookingCancellation bc = new BookingCancellation(new Guid(), booking, new DateTime());
+            FakeData.GetInstance().flightBookings.Remove(booking);
             FakeData.GetInstance().bookingCancellations.Add(bc);
             return bc;
         }
-        public BookingCancellation? GetBookingCancellation(FlightBooking booking)
+        public BookingCancellation? GetBookingCancellation(Guid BookingId)
         {
-            return FakeData.GetInstance().bookingCancellations.Where(bc => bc.Booking == booking).FirstOrDefault();
+            return FakeData.GetInstance().bookingCancellations.Where(bc => bc.Booking.BookingId == BookingId).FirstOrDefault();
         }
         public Seat[] GetSeats(Flight flight)
         {

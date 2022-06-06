@@ -36,6 +36,7 @@ namespace FlightAPI.Controllers
             return _bll.ConfirmBooking(booking);
         }
 
+        // Tested, working
         [HttpGet("GetAirLine/{AireLineId}")]
         public AirLine? GetAirLine(Guid AireLineId)
         {
@@ -49,6 +50,7 @@ namespace FlightAPI.Controllers
             return _bll.GetAirLines();
         }
 
+        // Tested, working
         [HttpGet("GetAirport/{IATACode}")]
         public Airport? GetAirport(string IATACode)
         {
@@ -62,34 +64,37 @@ namespace FlightAPI.Controllers
             return _bll.GetAirports();
         }
 
-        [HttpGet("GetBookingCancellation")]
-        public BookingCancellation? GetBookingCancellation(FlightBooking booking)
+        [HttpGet("GetBookingCancellation/{BookingId}")]
+        public BookingCancellation? GetBookingCancellation(Guid BookingId)
         {
-            return _bll.GetBookingCancellation(booking);
+            return _bll.GetBookingCancellation(BookingId);
         }
 
-        [HttpGet("GetBookingConfirmation")]
-        public BookingConfirmation? GetBookingConfirmation(FlightBooking booking)
+        [HttpGet("GetBookingConfirmation/{BookingId}")]
+        public BookingConfirmation? GetBookingConfirmation(Guid BookingId)
         {
-            return _bll.GetBookingConfirmation(booking);
+            return _bll.GetBookingConfirmation(BookingId);
         }
 
+        // Tested, working
         [HttpGet("GetFlight/{FlightId}")]
         public Flight? GetFlight(Guid FlightId)
         {
             return _bll.GetFlight(FlightId);
         }
 
-        [HttpGet("GetFlightBookingPassenger")]
-        public FlightBooking[] GetFlightBooking(Person passenger)
+        // Tested, working
+        [HttpGet("GetFlightBookingPassenger/{PassengerId}")]
+        public FlightBooking[] GetFlightBookingPassenger(Guid PassengerId)
         {
-            return _bll.GetFlightBooking(passenger);
+            return _bll.GetFlightBookingPassenger(PassengerId);
         }
 
-        [HttpGet("GetFlightBookingFlight")]
-        public FlightBooking[] GetFlightBooking(Flight flight)
+        // Tested, working
+        [HttpGet("GetFlightBookingFlight/{FlightId}")]
+        public FlightBooking[] GetFlightBookingFlight(Guid FlightId)
         {
-            return _bll.GetFlightBooking(flight);
+            return _bll.GetFlightBookingFlight(FlightId);
         }
 
         // Tested, working

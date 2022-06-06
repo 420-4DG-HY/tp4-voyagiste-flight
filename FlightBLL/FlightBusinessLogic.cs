@@ -19,14 +19,13 @@ namespace FlightBLL
         public Flight? GetFlight(Guid FlightId);
         public Flight[] GetFlightsAirline(Guid AirlineId);
         public Flight[] GetFlightsAirport(Guid AirportId);
-        public FlightBooking[] GetFlightBooking(Person passenger);
-        public FlightBooking[] GetFlightBooking(Flight flight);
-
+        public FlightBooking[] GetFlightBookingPassenger(Guid PassengerId);
+        public FlightBooking[] GetFlightBookingFlight(Guid FlightId);
         public FlightBooking Book(Guid FlightId, string codeSeat, Person passenger);
         public BookingConfirmation ConfirmBooking(FlightBooking booking);
-        public BookingConfirmation? GetBookingConfirmation(FlightBooking booking);
+        public BookingConfirmation? GetBookingConfirmation(Guid BookingId);
         public BookingCancellation CancelBooking(FlightBooking booking);
-        public BookingCancellation? GetBookingCancellation(FlightBooking booking);
+        public BookingCancellation? GetBookingCancellation(Guid BookingId);
         public void CleanupAvailabilities(Flight flight);
     }
 
@@ -104,30 +103,30 @@ namespace FlightBLL
         {
             return _dal.GetAirports();
         }
-
-        public BookingCancellation? GetBookingCancellation(FlightBooking booking)
+        
+        public BookingCancellation? GetBookingCancellation(Guid BookingId)
         {
-            return _dal.GetBookingCancellation(booking);
+            return _dal.GetBookingCancellation(BookingId);
         }
-
-        public BookingConfirmation? GetBookingConfirmation(FlightBooking booking)
+        
+        public BookingConfirmation? GetBookingConfirmation(Guid BookingId)
         {
-            return _dal.GetBookingConfirmation(booking);
+            return _dal.GetBookingConfirmation(BookingId);
         }
 
         public Flight? GetFlight(Guid FlightId)
         {
             return _dal.GetFlight(FlightId);
         }
-
-        public FlightBooking[] GetFlightBooking(Person passenger)
+        
+        public FlightBooking[] GetFlightBookingPassenger(Guid PassengerId)
         {
-            return _dal.GetFlightBooking(passenger);
+            return _dal.GetFlightBookingPassenger(PassengerId);
         }
 
-        public FlightBooking[] GetFlightBooking(Flight flight)
+        public FlightBooking[] GetFlightBookingFlight(Guid FlightId)
         {
-            return _dal.GetFlightBooking(flight);
+            return _dal.GetFlightBookingFlight(FlightId);
         }
 
         public Flight[] GetFlightsAirline(Guid AirlineId)
