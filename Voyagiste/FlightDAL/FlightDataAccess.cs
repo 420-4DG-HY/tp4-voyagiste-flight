@@ -97,7 +97,7 @@ namespace FlightDAL
             BookingCancellation? bBancel = GetBookingCancellation(booking.BookingId);
             if (bBancel != null)
             {
-                string message = "Cannot confirm booking : \n" + booking + " \nBecause it has been cancelled by : \n" + bBancel;
+                string message = "Cannot confirm booking : \n" + booking.BookingId + " \nBecause it has been cancelled for : \n" + bBancel.Booking.traveler.firstName + " " + bBancel.Booking.traveler.lastName + "on" + bBancel.CancelledWhen;
                 _logger.LogError(message);
                 throw new Exception(message);
             }
@@ -114,10 +114,19 @@ namespace FlightDAL
         }
         public BookingCancellation CancelBooking(FlightBooking booking)
         {
-            BookingCancellation bc = new BookingCancellation(new Guid(), booking, new DateTime());
-            FakeData.GetInstance().flightBookings.Remove(booking);
-            FakeData.GetInstance().bookingCancellations.Add(bc);
-            return bc;
+            BookingConfirmation? bc = GetBookingConfirmation(booking.BookingId);
+            if (bc != null)
+            {
+                string message = "Cannot cancel booking : \n" + booking.BookingId + " \nBecause it has been confirmed for : \n" + bc.Booking.traveler.firstName + " " + bc.Booking.traveler.lastName + "on " + bc.Booking.BookedWhen;
+                _logger.LogError(message);
+                throw new Exception(message);
+            }
+            else
+            {
+                BookingCancellation bCancel = new BookingCancellation(new Guid(), booking, new DateTime());
+                FakeData.GetInstance().bookingCancellations.Add(bCancel);
+                return bCancel;
+            }
         }
         public BookingCancellation? GetBookingCancellation(Guid BookingId)
         {
